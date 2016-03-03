@@ -1,0 +1,35 @@
+proxy:
+    restart: always
+
+pgsql:
+    restart: always
+    ports:
+        - '5432:5432'
+
+mysql:
+    restart: always
+    ports:
+        - '3306:3306'
+
+adminer:
+    restart: always
+    volumes:
+        - ./conf/adminer/theme.css:/data/http/adminer.css:ro
+    environment:
+        VIRTUAL_HOST: adminer.docker
+
+maildev:
+    restart: always
+    environment:
+        VIRTUAL_HOST: maildev.docker
+
+logrotate:
+    restart: always
+
+blackfire:
+    restart: always
+    environment:
+        BLACKFIRE_CLIENT_ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        BLACKFIRE_CLIENT_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        BLACKFIRE_SERVER_ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        BLACKFIRE_SERVER_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
