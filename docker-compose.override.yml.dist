@@ -1,8 +1,8 @@
 proxy:
     restart: always
     ports:
-        - 80:80
-        - 443:443
+        - '80:80'
+        - '443:443'
 
 # pgsql:
 #     restart: always
@@ -10,6 +10,10 @@ proxy:
 #         - '5432:5432'
 #     environment:
 #         POSTGRES_PASSWORD: root
+
+mysql_data:
+    volumes:
+       - ./mysql_data:/var/lib/mysql
 
 mysql:
     restart: always
@@ -30,8 +34,8 @@ adminer:
 maildev:
     restart: always
     ports:
-        - 80
-        - 1025:25
+        - '80'
+        - '1025:25'
     environment:
         VIRTUAL_HOST: maildev.docker
         VIRTUAL_PORT: 80
@@ -46,7 +50,7 @@ logrotate:
 blackfire:
     restart: always
     environment:
-        BLACKFIRE_CLIENT_ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        BLACKFIRE_CLIENT_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        BLACKFIRE_SERVER_ID: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-        BLACKFIRE_SERVER_TOKEN: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        - BLACKFIRE_CLIENT_ID
+        - BLACKFIRE_CLIENT_TOKEN
+        - BLACKFIRE_SERVER_ID
+        - BLACKFIRE_SERVER_TOKEN
