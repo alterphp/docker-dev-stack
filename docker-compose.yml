@@ -1,32 +1,115 @@
-proxy:
-    image: jwilder/nginx-proxy
-    volumes:
-        - /var/run/docker.sock:/tmp/docker.sock:ro
-        - ./conf/ssl/certs:/etc/nginx/certs:ro
-        - ./conf/proxy/default.conf:/etc/nginx/proxy.conf
+version: '2'
 
-# pgsql:
-#     image: postgres:9.4
+services:
+    proxy:
+        restart: unless-stopped
+        image: jwilder/nginx-proxy
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+            - ./conf/ssl/certs:/etc/nginx/certs:ro
+            - ./conf/proxy/default.conf:/etc/nginx/proxy.conf
+        networks:
+            - proxy
+        ports:
+            - '80:80'
+            - '443:443'
+        environment:
+            DEFAULT_HOST: dashboard.docker
 
-mysql_data:
-    image: mysql:5.5
+    adminer:
+        restart: unless-stopped
+        image: dehy/adminer
+        environment:
+            VIRTUAL_HOST: adminer.docker
+        networks:
+            - proxy
+            - database
 
-mysql:
-    image: mysql:5.5
-    volumes_from:
-       - mysql_data
+    # pgsql_94:
+    #     restart: unless-stopped
+    #     image: postgres:9.4
+    #     networks:
+    #         - database
+    #     volumes:
+    #         - pgsql_94_data:/var/lib/postgres/data
+    #     environment:
+    #         PGDATA: /var/lib/postgres/data
 
-# Adminer work for mysql AND postgresql database
-adminer:
-    image: maxexcloo/adminer
+    # pgsql_95:
+    #     restart: unless-stopped
+    #     image: postgres:9.5
+    #     networks:
+    #         - database
+    #     volumes:
+    #         - pgsql_95_data:/var/lib/postgres/data
+    #     environment:
+    #         PGDATA: /var/lib/postgres/data
 
-# Send and visualize mails
-maildev:
-    image: djfarrelly/maildev
+    # mysql_55:
+    #     restart: unless-stopped
+    #     image: mysql:5.5
+    #     networks:
+    #         - database
+    #     environment:
+    #         MYSQL_ROOT_PASSWORD: root
+    #     volumes:
+    #         - ./conf/mysql/conf.d:/etc/mysql/conf.d:ro
+    #         - mysql_55_data:/var/lib/mysql
 
-# Rotate logs for containers to prevent filling disk with logs
-logrotate:
-    image: lephare/logrotate
+    mysql_57:
+        restart: unless-stopped
+        image: mysql:5.7
+        networks:
+            - database
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - ./conf/mysql/conf.d:/etc/mysql/conf.d:ro
+            - mysql_57_data:/var/lib/mysql
 
-blackfire:
-    image: blackfire/blackfire
+    maildev:
+        restart: unless-stopped
+        image: djfarrelly/maildev
+        networks:
+            - proxy
+            - maildev
+        environment:
+            VIRTUAL_HOST: maildev.docker
+        command: bin/maildev --web 80 --smtp 25 --outgoing-host smtp-relay.gmail.com --outgoing-secure
+
+    memcached:
+        restart: unless-stopped
+        image: memcached:1.4
+        networks:
+            - memcached
+
+    dashboard:
+        image: lephare/dashboard-docker
+        networks:
+            - proxy
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        environment:
+            VIRTUAL_HOST: dashboard.docker
+            DOCKER_HOST: unix:///tmp/docker.sock
+
+networks:
+    proxy:
+        driver: bridge
+    maildev:
+        driver: bridge
+    database:
+        driver: bridge
+    memcached:
+        driver: bridge
+
+volumes:
+    mysql_57_data:
+        driver: local
+    # mysql_55_data:
+    #     driver: local
+    # pgsql_95_data:
+    #     driver: local
+    # pgsql_94_data:
+    #     driver: local
+

@@ -1,11 +1,11 @@
 /*
-FLAT UI Flavored Adminer Theme by M. Mahbubur Rahman (mahbub@mahbubblog.com) 
-Screenshot : http://pappu687.github.io/screenshots/adminer-screenshot.png
-Based on work by : LukÃ¡Å¡ Brandejs 
+FLAT UI Flavored Adminer Theme by M. Mahbubur Rahman (mahbub@mahbubblog.com)
+Screenshot : //pappu687.github.io/screenshots/adminer-screenshot.png
+Based on work by : LukÃ¡Å¡ Brandejs
 https://raw.github.com/vrana/adminer/master/designs/ng9/adminer.css
 */
 
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata);
+@import url(//fonts.googleapis.com/css?family=Roboto:400,700|Inconsolata);
 
 
 * {
@@ -45,11 +45,11 @@ a,a:visited {
 }
 
 pre.sqlarea{
-  background: white;  
+  background: white;
 }
 pre.sqlarea span,pre.sqlarea span{
   font-family: Inconsolata;
-  font-size: 1.2em; 
+  font-size: 1.2em;
 }
 
 a:hover {
@@ -93,20 +93,20 @@ fieldset {
   border-radius: 4px;
 }
 
-input{     
-  padding: 5px 12px;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #555;
-  background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
-  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
-  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
-  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+input{
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
 }
 
 input[type=submit] {
@@ -114,7 +114,7 @@ input[type=submit] {
   border-radius: 2px 2px 2px 2px;
   color: #FFFFFF;
   cursor: pointer;
-  display: inline-block;  
+  display: inline-block;
   line-height: 20px;
   margin-bottom: 0;
   font-size: 1em;
@@ -124,7 +124,7 @@ input[type=submit] {
   text-transform: none;
   transition: all 0.3s ease 0s;
   -moz-transition: all 0.3s ease 0s;
-  -webkit-transition: all 0.3s ease 0s;  
+  -webkit-transition: all 0.3s ease 0s;
   background: none repeat scroll 0 0 #2DB6CF;
   color: #FFFFFF;
   text-align: center;
@@ -169,7 +169,7 @@ code a:hover{background:transparent}
 table{
   margin:10px 0px;
   border:1px solid #E6E6E6;
-  background-color:#FFFFFF; 
+  background-color:#FFFFFF;
 }
 
 tbody tr:hover td,tbody tr:hover th{
@@ -183,7 +183,7 @@ thead th, thead td {
   white-space:nowrap;
   border-right:1px solid #34495e;
   background:#34495e;
-  color:#FFFFFF;  
+  color:#FFFFFF;
   padding-right:10px;
 }
 thead th acronym, thead td acronym, thead th sup, thead td sup{
@@ -193,7 +193,7 @@ thead th acronym, thead td acronym, thead th sup, thead td sup{
 th,td{
   border:1px solid rgba(233,233,233,.3);
   padding:3px 6px;
-  vertical-align:top; 
+  vertical-align:top;
 }
 
 th a {
@@ -247,11 +247,11 @@ tr.odd td {
   left:0px;
   width:100%;
   padding:10px 20px;
-  z-index:1;  
+  z-index:1;
 }
 
 #lang select{
-  width:178px;  
+  width:178px;
   padding: 5px 4px;
 }
 
@@ -324,12 +324,12 @@ input[name=logout]:hover {
   background:#ea0202;
 }
 
-#logins a, #tables a { 
+#logins a, #tables a {
   background:none;
 }
 
-#logins a:hover, #tables a:hover { 
-  
+#logins a:hover, #tables a:hover {
+
 }
 
 #logout {
@@ -339,7 +339,7 @@ input[name=logout]:hover {
 }
 
 #logout:hover {
-  color:red;  
+  color:red;
 }
 
 .js .column {
